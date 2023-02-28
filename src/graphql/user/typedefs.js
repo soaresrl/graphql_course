@@ -14,7 +14,6 @@ export const userTypeDefs = gql`
         userName: String
         indexRef: Int!
         createdAt: String!
-        perUser: String
         # posts: [Post!]!
     }
 `;

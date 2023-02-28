@@ -1,6 +1,5 @@
 const user = async (_, { id, teste }, { getUsers }) => {
     const users = await getUsers(`/${id}`);
-    console.log(teste);
     return users.data;
 };
 const users = async (obj, { input }, { getUsers }, info) => {
@@ -15,11 +14,5 @@ export const userResolvers = {
     Query: {
         user,
         users,
-    },
-    User: {
-        perUser: ({ id }) => {
-            console.log('perUser', id);
-            return 'Hello per user';
-        },
     },
 };

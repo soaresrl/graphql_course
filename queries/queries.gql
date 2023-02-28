@@ -10,7 +10,6 @@ query GET_USERS {
         id
         indexRef
         firstName
-        perUser
     }
 }
 
@@ -22,19 +21,6 @@ query GET_POST {
             id
             title
         }
-
-        ... on PostError {
-            statusCode
-            message
-
-            ... on PostNotFoundError {
-                postId
-            }
-
-            ... on PostTimeoutError {
-                timeout
-            }
-        }
     }
 }
 
@@ -42,6 +28,5 @@ query GET_POSTS {
     posts(input: { _sort: "indexRef", _order: DESC, _start: 0, _limit: 2 }) {
         id
         indexRef
-        unixTimestamp
     }
 }
