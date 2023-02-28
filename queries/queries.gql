@@ -1,0 +1,47 @@
+query GET_USER($id: ID!, $teste: Boolean) {
+    user(id: $id, teste: $teste) {
+        id
+        userName
+    }
+}
+
+query GET_USERS {
+    users(input: { _sort: "indexRef", _order: DESC, _start: 0, _limit: 2 }) {
+        id
+        indexRef
+        firstName
+        perUser
+    }
+}
+
+query GET_POST {
+    post(id: "860") {
+        __typename
+
+        ... on Post {
+            id
+            title
+        }
+
+        ... on PostError {
+            statusCode
+            message
+
+            ... on PostNotFoundError {
+                postId
+            }
+
+            ... on PostTimeoutError {
+                timeout
+            }
+        }
+    }
+}
+
+query GET_POSTS {
+    posts(input: { _sort: "indexRef", _order: DESC, _start: 0, _limit: 2 }) {
+        id
+        indexRef
+        unixTimestamp
+    }
+}
