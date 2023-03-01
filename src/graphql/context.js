@@ -1,22 +1,18 @@
 import axios from 'axios';
-
-const getUsers = (path = '/') => {
-    return axios({
-        method: 'get',
-        url: 'http://localhost:3000/users' + path,
-    });
-};
+import { makeUserDataLoader } from './user/dataloaders';
+import { getUsers } from './user/utils';
 
 const getPosts = (path = '/') => {
     return axios({
         method: 'get',
-        url: 'http://localhost:3000/posts' + path,
+        url: process.env.API_URL + '/posts' + path,
     });
 };
 
 export const context = () => {
     return {
-        getUsers,
+        userDataLoader: makeUserDataLoader(getUsers(axios)),
+        getUsers: getUsers(axios),
         getPosts,
     };
 };
