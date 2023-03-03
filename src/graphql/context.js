@@ -1,18 +1,14 @@
 import axios from 'axios';
+import { makePostDataLoader } from './post/dataloader';
+import { getPosts } from './post/utils';
 import { makeUserDataLoader } from './user/dataloaders';
 import { getUsers } from './user/utils';
-
-const getPosts = (path = '/') => {
-    return axios({
-        method: 'get',
-        url: process.env.API_URL + '/posts' + path,
-    });
-};
 
 export const context = () => {
     return {
         userDataLoader: makeUserDataLoader(getUsers(axios)),
+        postDataLoader: makePostDataLoader(getPosts(axios)),
         getUsers: getUsers(axios),
-        getPosts,
+        getPosts: getPosts(axios),
     };
 };
